@@ -1,0 +1,127 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7ju5pnqdq6ed"]
+
+[ext_resource type="Script" path="res://addons/AITree/Main Panel.gd" id="1_vom2k"]
+[ext_resource type="PackedScene" uid="uid://dbr7d4mm3rhvr" path="res://addons/AITree/GraphNodes/RootNode.tscn" id="2_ew84u"]
+
+[node name="MainPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_vom2k")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+layout_mode = 0
+offset_right = 1281.0
+offset_bottom = 720.0
+
+[node name="HBoxContainer" type="VBoxContainer" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ConditionalButton" type="Button" parent="HSplitContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+text = "Conditional"
+
+[node name="RandomButton" type="Button" parent="HSplitContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+text = "Random"
+
+[node name="SequenceButton" type="Button" parent="HSplitContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Sequence"
+
+[node name="SelectorButton" type="Button" parent="HSplitContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Selector"
+
+[node name="ProcessButton" type="Button" parent="HSplitContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Process"
+
+[node name="DelayButton" type="Button" parent="HSplitContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Delay"
+
+[node name="ActionButton" type="Button" parent="HSplitContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 0
+text = "Action"
+
+[node name="SaveButton" type="Button" parent="HSplitContainer/HBoxContainer"]
+custom_minimum_size = Vector2(120, 30)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+size_flags_stretch_ratio = 0.7
+text = "Save"
+
+[node name="GraphEdit" type="GraphEdit" parent="HSplitContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 7.54
+right_disconnects = true
+
+[node name="RootNode" parent="HSplitContainer/GraphEdit" instance=ExtResource("2_ew84u")]
+layout_mode = 0
+offset_left = 444.0
+offset_top = 253.0
+offset_right = 616.0
+offset_bottom = 343.0
+mouse_filter = 1
+position_offset = Vector2(444, 253)
+
+[node name="NotFound" type="Control" parent="HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 7.54
+
+[node name="Label" type="Label" parent="HSplitContainer/NotFound"]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 216.0
+offset_right = 864.0
+offset_bottom = 445.0
+theme_override_font_sizes/font_size = 40
+text = "No AI Tree Found In Scene, Please Open a Scene with AI Tree As A Child of the Root"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[connection signal="pressed" from="HSplitContainer/HBoxContainer/ConditionalButton" to="." method="_on_conditional_button_presed"]
+[connection signal="pressed" from="HSplitContainer/HBoxContainer/RandomButton" to="." method="_on_random_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/HBoxContainer/SequenceButton" to="." method="_on_sequence_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/HBoxContainer/SelectorButton" to="." method="_on_selector_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/HBoxContainer/ProcessButton" to="." method="_on_process_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/HBoxContainer/DelayButton" to="." method="_on_delay_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/HBoxContainer/ActionButton" to="." method="_on_action_button_pressed"]
+[connection signal="pressed" from="HSplitContainer/HBoxContainer/SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="connection_request" from="HSplitContainer/GraphEdit" to="." method="_on_graph_edit_connection_request"]
+[connection signal="delete_nodes_request" from="HSplitContainer/GraphEdit" to="." method="_on_graph_edit_delete_nodes_request"]
+[connection signal="disconnection_request" from="HSplitContainer/GraphEdit" to="." method="_on_graph_edit_disconnection_request"]
+[connection signal="node_deselected" from="HSplitContainer/GraphEdit" to="." method="_on_graph_edit_node_deselected"]
+[connection signal="node_selected" from="HSplitContainer/GraphEdit" to="." method="_on_graph_edit_node_selected"]

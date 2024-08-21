@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://xj0wfexctt5g"]
+
+[ext_resource type="Script" path="res://addons/AITree/GraphNodes/RandomGraphNode.gd" id="1_5pqer"]
+
+[node name="RandomGraphNode" type="GraphNode"]
+offset_right = 300.0
+offset_bottom = 134.0
+title = "Random Node"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("1_5pqer")
+
+[node name="TitleContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="InputLabel" type="Label" parent="TitleContainer"]
+layout_mode = 2
+text = "Input"
+
+[node name="ExclusiveLabel" type="Label" parent="TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+text = "IsExclusive"
+
+[node name="ExclusiveCheckbox" type="CheckBox" parent="TitleContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Add Node"
+
+[connection signal="pressed" from="Button" to="." method="_on_add_node_button_pressed"]

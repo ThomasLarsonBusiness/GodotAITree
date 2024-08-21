@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://cp3u4f85e5gl0"]
+
+[ext_resource type="Script" path="res://addons/AITree/GraphNodes/DelayGraphNode.gd" id="1_51ds0"]
+
+[node name="DelayGraphNode" type="GraphNode"]
+offset_right = 302.0
+offset_bottom = 100.0
+title = "Delay Node"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+script = ExtResource("1_51ds0")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Input Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Input"
+
+[node name="Delay Length" type="TextEdit" parent="HBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Delay Length"
