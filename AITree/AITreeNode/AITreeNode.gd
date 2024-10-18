@@ -59,7 +59,7 @@ func build_tree(data, prevID : String, newChar : String, isRoot : bool = false):
 		
 		"Process Node":
 			# Makes the Process Node and Adds all the Valid Nodes to the Process
-			node = ProcessNode.new(data["Simultaneous"])
+			node = ProcessNode.new(data["Simultaneous"], data["EndOnFirstFail"])
 			for index in data["Nodes"].size():
 				if data["Nodes"][index] != null:
 					node.append_node(await build_tree(data["Nodes"][index], currentID, String.chr("A".unicode_at(0) + index)))

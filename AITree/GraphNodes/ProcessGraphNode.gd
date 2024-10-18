@@ -19,7 +19,7 @@ func _on_add_node_button_pressed():
 	# Add the New HBox
 	var container = HBoxContainer.new()
 	container.custom_minimum_size = Vector2(0, 30)
-	get_children()[associatedNodes.size()].add_sibling(container)
+	get_children()[associatedNodes.size() + 1].add_sibling(container)
 	
 	# Add the Node Label
 	var nodeLabel = Label.new()
@@ -43,7 +43,7 @@ func _on_add_node_button_pressed():
 	associatedPorts.append(-1)
 	
 	# Enable the Slot
-	set_slot_enabled_right(associatedNodes.size(), true)
+	set_slot_enabled_right(associatedNodes.size() + 1, true)
 
 # When a delete Button is pressed next to a node, remove it and adjust connections
 func _on_delete_button_pressed(node):
@@ -127,6 +127,7 @@ func _delete_connection(graph : GraphEdit, fromPort : int, toNode : Node, toPort
 # Loads in and assigns the provided data
 func load_data():
 	$InputData/SimultaneousCheck.button_pressed = providedData["Simultaneous"]
+	$OnFailData/OnFailCheck.button_pressed = providedData["EndOnFirstFail"]
 	
 	var nodes = providedData["Nodes"]
 	for i in nodes.size():
@@ -149,6 +150,7 @@ func save():
 			"Y": position_offset.y as int,
 		},
 		"Simultaneous": $InputData/SimultaneousCheck.button_pressed,
+		"EndOnFirstFail": $OnFailData/OnFailCheck.button_pressed,
 		"Nodes": nodeData
 	}
 

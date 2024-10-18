@@ -6,11 +6,13 @@ var associatedNodes : Array[TreeNode]
 var threads : Array[Thread]
 var results : Array[TreeNode.RESULT]
 var isSimultaneous : bool
+var endOnFirstFail : bool
 
 #Functions
 # Init Function
-func _init(simul : bool):
+func _init(simul : bool, fail : bool):
 	isSimultaneous = simul
+	endOnFirstFail = fail
 
 # Adds an associated node and preps the arrays for use
 func append_node(node : TreeNode):
@@ -40,6 +42,8 @@ func node_process():
 			results[index] = await associatedNodes[index].node_process()
 			if results[index] == TreeNode.RESULT.SUCCESS:
 				successCount += 1
+			else:
+				break
 	
 	if successCount == associatedNodes.size():
 		result = TreeNode.RESULT.SUCCESS
